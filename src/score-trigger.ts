@@ -1,4 +1,4 @@
-import { Actor, Collider, Color, Engine, Side, vec, Vector } from 'excalibur';
+import { Actor, Collider, Color, vec, Vector } from 'excalibur';
 import { Config } from './config';
 import { LevelType } from './types';
 import { Sounds } from './resources';
@@ -23,14 +23,14 @@ export class ScoreTrigger extends Actor {
         this.on('exitviewport', () => this.kill());
     }
 
-    override onCollisionStart(self: Collider, other: Collider, side: Side): void {
+    override onCollisionStart(_self: Collider, other: Collider): void {
         if (other.owner.name === 'Bird') {
             this.level.incrementScore();
             Sounds.ScoreSound.play();
         }
     }
 
-    override onPostUpdate(engine: Engine, elapsed: number): void {
+    override onPostUpdate(): void {
         if (!ScoreTrigger.isMoving) {
             this.#stop();
         } else {

@@ -4,7 +4,6 @@ import {
     AnimationStrategy,
     clamp,
     Collider,
-    CollisionContact,
     Color,
     Engine,
     Keys,
@@ -24,9 +23,9 @@ const BIRD_SIZE = 32;
 export class Bird extends Actor {
     #jumping = false;
 
-    startSprite: Sprite;
-    upAnimation: Animation;
-    downAnimation: Animation;
+    startSprite!: Sprite;
+    upAnimation!: Animation;
+    downAnimation!: Animation;
 
     constructor(private level: LevelType) {
         const gameScreen = level.engine.screen;
@@ -48,7 +47,7 @@ export class Bird extends Actor {
         return this.level.isImmortalMode;
     }
 
-    override onInitialize(engine: Engine): void {
+    override onInitialize(): void {
         const spriteSheet = SpriteSheet.fromImageSource({
             image: Resources.BirdImage,
             grid: {
@@ -58,13 +57,6 @@ export class Bird extends Actor {
                 spriteHeight: BIRD_SIZE
             }
         });
-
-        // spriteSheet.sprites.forEach(sprite => {
-        //     sprite.destSize = {
-        //         width: BIRD_SIZE * 2,
-        //         height: BIRD_SIZE * 2,
-        //     };
-        // });
 
         this.startSprite = spriteSheet.getSprite(1, 0);
 
@@ -90,7 +82,7 @@ export class Bird extends Actor {
         this.on('exitviewport', () => this.level.gameOver());
     }
 
-    override onCollisionStart(self: Collider, other: Collider, side: Side, contact: CollisionContact): void {
+    override onCollisionStart(_self: Collider, other: Collider, side: Side): void {
         if (other.owner.name === 'Pipe' && this.isImmortalMode && side !== Side.Bottom) {
             this.stop(true);
 
@@ -106,7 +98,7 @@ export class Bird extends Actor {
         }
     }
 
-    override onCollisionEnd(self: Collider, other: Collider, side: Side, lastContact: CollisionContact): void {
+    override onCollisionEnd(_self: Collider, other: Collider): void {
         if (['Ground', 'Pipe'].includes(other.owner.name)) {
             this.#start();
         }

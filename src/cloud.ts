@@ -1,4 +1,4 @@
-import { Actor, Color, Engine, Random, Sprite, vec, Vector } from 'excalibur';
+import { Actor, Color, Random, vec, Vector } from 'excalibur';
 
 import { Config } from './config';
 import { LevelType } from './types';
@@ -27,18 +27,7 @@ export class Cloud extends Actor {
         this.on('exitviewport', () => this.kill());
     }
 
-    override onInitialize(engine: Engine) {
-        // const sprite = new Sprite({
-        //     image: Resources.GroundImage,
-        //     width: engine.screen.drawWidth,
-        //     height: Config.GroundHeight,
-        // });
-
-        // this.graphics.add('ground', sprite);
-        // this.graphics.use('ground');
-    }
-
-    override onPostUpdate(engine: Engine, elapsed: number): void {
+    override onPostUpdate(): void {
         if (!Cloud.isMoving) {
             this.stop();
         } else {

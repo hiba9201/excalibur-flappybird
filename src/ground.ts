@@ -5,7 +5,7 @@ import { Resources } from './resources';
 export class Ground extends Actor {
     moving = false;
 
-    constructor(private gameScreen: Screen) {
+    constructor(gameScreen: Screen) {
         super({
             name: 'Ground',
             pos: vec(0, gameScreen.drawHeight - Config.GroundHeight),
@@ -28,7 +28,7 @@ export class Ground extends Actor {
         this.graphics.use('ground');
     }
 
-    override onPostUpdate(engine: Engine, elapsedMs: number): void {
+    override onPostUpdate(_engine: Engine, elapsedMs: number): void {
         if (!this.moving) {
             return;
         }

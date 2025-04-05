@@ -44,21 +44,21 @@ export class Pipe extends Actor {
         return this.level.isImmortalMode;
     }
 
-    override onCollisionStart(self: Collider, other: Collider, side: Side) {
+    override onCollisionStart(_self: Collider, other: Collider, side: Side) {
         if (other.owner.name === 'Bird' && (!this.isImmortalMode || [Side.Left, Side.Right].includes(side))) {
             Pipe.isMoving = false;
             ScoreTrigger.isMoving = false;
         }
     }
  
-    override onCollisionEnd(self: Collider, other: Collider): void {
+    override onCollisionEnd(_self: Collider, other: Collider): void {
         if (other.owner.name === 'Bird') {
             Pipe.isMoving = true;
             ScoreTrigger.isMoving = true;
         }
     }
 
-    override onPostUpdate(engine: Engine, elapsed: number): void {
+    override onPostUpdate(): void {
         if (!Pipe.isMoving) {
             this.#stop();
         } else {

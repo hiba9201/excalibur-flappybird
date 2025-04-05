@@ -1,4 +1,4 @@
-import { Color, Engine, Font, Keys, Label, Random, Scene, SceneActivationContext, TextAlign, vec, Vector, WebAudio } from 'excalibur';
+import { Color, Font, Label, Random, Scene, TextAlign, vec } from 'excalibur';
 
 import { Bird } from './bird';
 import { Ground } from './ground';
@@ -30,10 +30,10 @@ export class Level extends Scene {
             color: Color.White,
         }),
     });
-    bestLabel: Label;
-    startInstructions: Label;
+    bestLabel!: Label;
+    startInstructions!: Label;
 
-    override onInitialize(engine: Engine): void {
+    override onInitialize(): void {
         this.#bird = new Bird(this);
         this.add(this.#bird);
         
@@ -79,7 +79,7 @@ export class Level extends Scene {
         this.showStartInstructions();
     }
 
-    override onActivate(context: SceneActivationContext<unknown>): void {
+    override onActivate(): void {
         Sounds.BackgroundMusic.loop = true;
         Sounds.BackgroundMusic.play();
     }

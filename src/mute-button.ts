@@ -1,4 +1,4 @@
-import { CircleCollider, Color, Engine, ScreenElement, SpriteSheet, vec } from 'excalibur';
+import { Color, ScreenElement, SpriteSheet, vec } from 'excalibur';
 
 import { LevelType } from './types';
 import { Resources, Sounds } from './resources';
@@ -55,7 +55,7 @@ export class MuteButton extends ScreenElement {
         });
     }
 
-    override onPostUpdate(engine: Engine, elapsed: number): void {
+    override onPostUpdate(): void {
         if (this.isMuted) {
             this.graphics.use('off');
         } else {

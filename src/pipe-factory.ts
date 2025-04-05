@@ -1,4 +1,4 @@
-import { Random, Timer, Vector } from 'excalibur';
+import { Random, Timer } from 'excalibur';
 import { Config } from './config';
 import { Pipe } from './pipe';
 import { ScoreTrigger } from './score-trigger';
