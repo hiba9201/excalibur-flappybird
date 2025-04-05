@@ -9,8 +9,10 @@ body {
 
 html,
 body,
-canvas {
+.game-canvas {
     -webkit-tap-highlight-color: transparent;
+    height: 100%;
+    width: 100%;
 }
 
 body {
