@@ -1,4 +1,4 @@
-import { Actor, Color, Engine, Random, SpriteSheet, vec, Vector } from 'excalibur';
+import { Actor, Color, Random, SpriteSheet, vec, Vector } from 'excalibur';
 
 import { Config } from './config';
 import { LevelType } from './types';
