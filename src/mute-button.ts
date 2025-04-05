@@ -36,11 +36,7 @@ export class MuteButton extends ScreenElement {
         this.graphics.add('off', this.#spriteSheet.getSprite(1, 0));
         this.graphics.use('on');
 
-        this.on('pointerdown', (event) => {
-            event.nativeEvent.preventDefault();
-        });
-        this.on('pointerup', (event) => {
-            event
+        this.on('pointerup', () => {
             this.isMuted = !this.isMuted;
 
             if (this.isMuted) {

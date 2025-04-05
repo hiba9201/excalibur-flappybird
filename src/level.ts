@@ -1,4 +1,4 @@
-import { Color, Font, Label, Random, Scene, TextAlign, vec } from 'excalibur';
+import { Color, Font, Label, PointerEvent, Random, Scene, TextAlign, vec } from 'excalibur';
 
 import { Bird } from './bird';
 import { Ground } from './ground';
@@ -88,27 +88,34 @@ export class Level extends Scene {
         this.startInstructions.graphics.isVisible = true;
 
         this.engine.input.keyboard.once('hold', () => {
-            this.reset();
- 
-            this.startInstructions.graphics.isVisible = false;
-            this.#pipeFactory.start();
-            this.#cloudFactory.start();
-            this.#cloudFactory2.start();
-            this.isPaused = false;
+            this.#restartGame();
         });
+
         this.engine.input.pointers.once('down', (event) => {
-            if (this.#muteButton.collider.bounds.contains(event.coordinates.screenPos)) {
-                return;
-            }
-
-            this.reset();
-
-            this.startInstructions.graphics.isVisible = false;
-            this.#pipeFactory.start();
-            this.#cloudFactory.start();
-            this.#cloudFactory2.start();
-            this.isPaused = false;
+            this.#onMouseDown(event);
         });
+    }
+
+    #onMouseDown(event: PointerEvent) {
+        if (this.#muteButton.collider.bounds.contains(event.coordinates.screenPos)) {
+            this.engine.input.pointers.once('down', (event) => {
+                this.#onMouseDown(event);
+            });
+
+            return;
+        }
+
+        this.#restartGame();
+    }
+
+    #restartGame() {
+        this.reset();
+
+        this.startInstructions.graphics.isVisible = false;
+        this.#pipeFactory.start();
+        this.#cloudFactory.start();
+        this.#cloudFactory2.start();
+        this.isPaused = false;
     }
 
     incrementScore() {
