@@ -1,0 +1,20 @@
+{
+  "name": "excalibur-tutor",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "vite",
+    "build": "tsc && vite build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "typescript": "5.8.2",
+    "vite": "6.2.5"
+  },
+  "dependencies": {
+    "excalibur": "0.30.3"
+  }
+}
