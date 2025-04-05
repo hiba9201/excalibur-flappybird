@@ -1,7 +1,8 @@
-import { Actor, Color, Random, vec, Vector } from 'excalibur';
+import { Actor, Color, Engine, Random, SpriteSheet, vec, Vector } from 'excalibur';
 
 import { Config } from './config';
 import { LevelType } from './types';
+import { Resources } from './resources';
 
 export class Cloud extends Actor {
     static isMoving = true;
@@ -17,6 +18,7 @@ export class Cloud extends Actor {
         super({
             name: 'Cloud',
             pos: vec(gameScreen.drawWidth, cloudYPos),
+            anchor: Vector.Zero,
             width: cloudWidth,
             height: cloudHeight,
             color: Color.White,
@@ -25,6 +27,33 @@ export class Cloud extends Actor {
         });
 
         this.on('exitviewport', () => this.kill());
+    }
+
+    override onInitialize(): void {
+        const spriteSheet = SpriteSheet.fromImageSource({
+            image: Resources.CloudImage,
+            grid: {
+                rows: 1,
+                columns: 2,
+                spriteHeight: 22,
+                spriteWidth: 60,
+            },
+        });
+
+        const cloudSprite1 = spriteSheet.getSprite(0, 0);
+        const cloudSprite2 = spriteSheet.getSprite(1, 0);
+        cloudSprite1.destSize = {
+            width: this.width,
+            height: this.height,
+        };
+        cloudSprite2.destSize = {
+            width: this.width,
+            height: this.height,
+        };
+
+        const clouds = [cloudSprite1, cloudSprite2];
+
+        this.graphics.use(clouds[Math.round(Math.random())]);
     }
 
     override onPostUpdate(): void {

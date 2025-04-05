@@ -20,6 +20,7 @@ export const Resources = {
         wrapping: ImageWrapping.Repeat,
     }),
     MuteButtonImage: new ImageSource('./images/mute-button.png'),
+    CloudImage: new ImageSource('./images/cloud.png'),
 
     ...Sounds,
 } as const;

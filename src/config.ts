@@ -9,10 +9,10 @@ export const Config = {
 
     GroundHeight: 64,
 
-    CloudMinWidth: 64,
-    CloudMaxWidth: 128,
-    CloudMinHeight: 32,
-    CloudMaxHeight: 64,
+    CloudMinWidth: 100,
+    CloudMaxWidth: 150,
+    CloudMinHeight: 72,
+    CloudMaxHeight: 100,
     CloudIntervalMax: 900,
     CloudIntervalMin: 600,
 } as const;

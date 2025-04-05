@@ -3,7 +3,7 @@ import { Color, ScreenElement, SpriteSheet, vec } from 'excalibur';
 import { LevelType } from './types';
 import { Resources, Sounds } from './resources';
 
-const BUTTON_SIZE = 32;
+const BUTTON_SIZE = 48;
 
 export class MuteButton extends ScreenElement {
     isMuted = false;
@@ -28,12 +28,22 @@ export class MuteButton extends ScreenElement {
             grid: {
                 rows: 1,
                 columns: 2,
-                spriteWidth: BUTTON_SIZE,
-                spriteHeight: BUTTON_SIZE
+                spriteWidth: 32,
+                spriteHeight: 32
             }
         });
-        this.graphics.add('on', this.#spriteSheet.getSprite(0, 0));
-        this.graphics.add('off', this.#spriteSheet.getSprite(1, 0));
+        const onSprite = this.#spriteSheet.getSprite(0, 0);
+        const offSprite = this.#spriteSheet.getSprite(1, 0);
+        onSprite.destSize = {
+            width: this.width,
+            height: this.height,
+        };
+        offSprite.destSize = {
+            width: this.width,
+            height: this.height,
+        }
+        this.graphics.add('on', onSprite);
+        this.graphics.add('off', offSprite);
         this.graphics.use('on');
 
         this.on('pointerup', () => {

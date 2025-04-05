@@ -4,7 +4,7 @@ import { Level } from './level';
 import { Resources } from './resources';
 
 const game = new Engine({
-    backgroundColor: Color.fromHex('#5797ff'),
+    backgroundColor: Color.fromHex('#38b1f2'),
     pixelArt: true,
     pixelRatio: 2,
     displayMode: DisplayMode.FillContainer,

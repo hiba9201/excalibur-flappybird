@@ -12,7 +12,6 @@ export class Level extends Scene {
     #random = new Random();
     #pipeFactory = new PipeFactory(this, this.#random, Config.PipeInterval);
     #cloudFactory = new CloudFactory(this, new Random());
-    #cloudFactory2 = new CloudFactory(this, new Random());
     #ground!: Ground;
     #bird!: Bird;
     #muteButton!: MuteButton;
@@ -114,7 +113,6 @@ export class Level extends Scene {
         this.startInstructions.graphics.isVisible = false;
         this.#pipeFactory.start();
         this.#cloudFactory.start();
-        this.#cloudFactory2.start();
         this.isPaused = false;
     }
 
@@ -136,7 +134,6 @@ export class Level extends Scene {
         this.#bird.reset();
         this.#pipeFactory.reset();
         this.#cloudFactory.reset();
-        this.#cloudFactory2.reset();
         this.#ground.reset();
         this.score = 0;
         this.scoreLabel.text = `Score: ${this.score}`;
@@ -147,7 +144,6 @@ export class Level extends Scene {
 
         this.#pipeFactory.stop();
         this.#cloudFactory.stop();
-        this.#cloudFactory2.stop();
         this.#bird.stop();
         this.#ground.stop();
         this.showStartInstructions();
